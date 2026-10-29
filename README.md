@@ -8,6 +8,14 @@ Run **PP-OCRv6 text recognition** on a Samsung Galaxy S10 SCV41 with native Linu
 
 [Download v0.2 models](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.2.0) · [GPU build/export guide](docs/gpu-native.md) · [Test details](docs/pnnx-benchmarks.md)
 
+## Docker API (v0.3)
+
+A resident GPU HTTP service is now available: **6.250 crops/s with ten concurrent clients** on the tested phone, including upload, decoding and preprocessing. All 310 texts and output hashes match v0.2; models initialized once. The API provides single/batch recognition, bounded queues, optional bearer authentication, metrics and automatic recovery from a worker-process failure.
+
+[Download ARM64 Docker image](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.3.0) · [Deployment and API guide](docs/api.md) · [Measured API data](benchmarks/api-v0.3.json)
+
+Models are mounted separately from v0.2. GPU acceleration uses host KGSL Mesa; no SNPE or NPU runtime is bundled. This remains **cropped-text recognition**, not page detection. The source Dockerfile and tested cache/cross-build recipe are included.
+
 ## Measured results
 
 Medians of **two 310-crop runs per configuration**, starting after battery temperature was at or below 35.5°C in three checks five seconds apart. The second round reversed order; a common device lock excluded other managed accelerator tests. Initialization is excluded.

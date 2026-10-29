@@ -8,6 +8,14 @@
 
 [下载 v0.2 模型](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.2.0) · [GPU 构建／导出指南](docs/gpu-native.zh-CN.md) · [测试详情](docs/pnnx-benchmarks.zh-CN.md)
 
+## Docker API（v0.3）
+
+已提供常驻 GPU HTTP 服务：实测手机 **10 并发 6.250 张/秒**，包含上传、解码和预处理。310 张文字及输出哈希全部与 v0.2 一致，模型只初始化一次。支持单张／批量识别、有界队列、可选 Bearer 鉴权、监控，以及工作进程异常后的自动恢复。
+
+[下载 ARM64 Docker 镜像](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.3.0) · [部署与 API 指南](docs/api.zh-CN.md) · [API 实测数据](benchmarks/api-v0.3.json)
+
+模型单独挂载，继续使用 v0.2。GPU 加速调用宿主 KGSL Mesa，不打包 SNPE 或 NPU 运行库。这仍是**文字裁剪图识别**，不包含整页检测。仓库同时提供源码 Dockerfile 和已验证的缓存／交叉编译打包方式。
+
 ## 实测结果
 
 每种配置运行 **两轮完整的 310 张裁剪图，取中位数**；每次等电池温度在间隔 5 秒的三次检查中均不超过 35.5°C 后开始。第二轮反向排列，使用设备公共互斥锁排除其他受管理的加速测试。数据不含模型初始化。

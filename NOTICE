@@ -19,3 +19,9 @@ Qualcomm SNPE, SDK headers, compiler, runtime libraries, firmware and precompile
 HTA cache are NOT included or relicensed. Obtain your own authorized SDK/runtime.
 No endorsement by Qualcomm, Samsung, Tencent or PaddlePaddle is implied.
 Calibration/test images and per-image transcriptions are NOT redistributed.
+
+v0.3 adds an open-source GPU-only Docker API image. It includes the compiled
+Apache-2.0 application, BSD-licensed ncnn and the glslang shader compiler;
+see licenses/glslang/ for its component licenses. Debian and Python packages
+retain their included copyright/license notices. Model weights are mounted
+separately. Qualcomm SDK/runtime/firmware and HTA caches are still excluded.

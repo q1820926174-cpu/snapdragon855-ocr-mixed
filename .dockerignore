@@ -1,0 +1,15 @@
+.git
+.venv
+models
+downloads
+.env
+.env.*
+_deps
+build/*
+!build/pnnx-gpu-worker
+**/__pycache__
+*.pyc
+*.dlc
+*.so
+*.a
+benchmarks

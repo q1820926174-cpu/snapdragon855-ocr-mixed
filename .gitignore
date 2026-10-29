@@ -1,4 +1,8 @@
 models/
+downloads/
+.env
+.env.*
+!.env.example
 build/
 _deps/
 .venv/

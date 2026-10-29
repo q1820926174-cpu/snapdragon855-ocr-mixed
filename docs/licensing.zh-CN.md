@@ -24,9 +24,11 @@ PaddleOCR 项目及官方 [PP-OCRv6 medium 识别模型说明](https://huggingfa
 
 ## 公开包排除的文件
 
+**v0.3 GPU API 镜像**另行提供编译后的开源 GPU 程序、ncnn／glslang 和 Debian／Python 运行依赖，并保留各自许可。glslang 组件许可位于 `licenses/glslang/`，镜像内位于 `/app/licenses`。公开 Dockerfile 指明源码仓库和构建流程，Debian、PyPI 保留各自上游源码分发。模型单独挂载，不随镜像重复打包，也不分发高通运行库或固件。
+
 - 校准图、测试图、图像 raw 张量及逐图转录。
 - SDK 许可 PDF、SDK 示例、头文件和第三方运行库。
-- 高通或其他厂商固件、启动镜像、预编译 HTA 缓存和 ELF 执行器。
+- 高通或其他厂商固件、启动镜像和预编译 HTA 缓存。
 - 私人 SSH 文件、Wi-Fi 信息及私有工作区内容。
 
-GitHub Release 发布的是单独整理的开放模型包，附有可复现的本地转换流程。最初供这台手机直接运行的私有整合包没有作为 GitHub 附件上传。
+v0.1／v0.2 开放模型附件保持不变，仍不包含执行程序；v0.3 单独提供开源 GPU 应用镜像。最初供这台手机直接运行的私有整合包没有作为 GitHub 附件上传。

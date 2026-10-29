@@ -1,0 +1,62 @@
+{
+  "images": 310,
+  "concurrency": 10,
+  "duration_seconds": 49.59639929999685,
+  "throughput_images_s": 6.250453750178185,
+  "correct": 257,
+  "same_text_as_v02": 310,
+  "same_hash_as_v02": 310,
+  "client_latency_ms": {
+    "p50": 1598.822800002381,
+    "p95": 1603.285584999685
+  },
+  "worker": {
+    "type": "ready",
+    "protocol": 1,
+    "backend": "vulkan",
+    "model_initializations": 1,
+    "workers": 2,
+    "device_name": "Turnip Adreno (TM) 640",
+    "device_type": 1,
+    "init_ms": 2199.24,
+    "feature_host_readbacks": 0,
+    "ctc_readback_bytes": 640
+  },
+  "completed_after_load": 343,
+  "batch_order_pass": true,
+  "transport": "Real HTTP over physical USB; JPEG/PNG decode and preprocessing included; host images preloaded before timing",
+  "scope": "Original 310 development recognition crops, not pages or unseen holdout",
+  "queue_429_pass": true,
+  "invalid_422_and_oversize_413_pass": true,
+  "container": {
+    "image_id": "sha256:532d9b53562b20a60aea2459e88a1992083de9c5482298a292522287b28f899e",
+    "architecture": "arm64",
+    "user": "10001:10001",
+    "privileged": false,
+    "read_only_rootfs": true,
+    "devices": [
+      "/dev/kgsl-3d0"
+    ],
+    "driver_mounted_read_only": true,
+    "models_mounted_read_only": true
+  },
+  "versions": {
+    "fastapi": "0.162.0",
+    "uvicorn": "0.54.0",
+    "Pillow": "13.0.0",
+    "numpy": "1.26.4"
+  },
+  "worker_sha256": "acaed6d17228b49f389125fcd9478b1994a2546d20578b857c76cce2128db304",
+  "application_files": {
+    "service/app.py": "844810bd72853d0fe712e393d54706c791cbfc041e5a7e26b1f0d27f774a946d",
+    "service/backend.py": "3ea46126570a575ae691c637a0dc1f58ba689a4f1e1a8da545c218f992ef2208",
+    "scripts/prepare_inputs.py": "fc32b0ac617e22c830415a0ad1ea164cf621f067c3899e819b7a7383abb9ebbf",
+    "scripts/verify_gpu_models.py": "2ffcb273780c1a386a7922ad3af0600a240e3daf02eddcae9774538ea9822b50",
+    "scripts/verify_models.py": "eda503553eec76b61311d2efa03a3280f6e4e07130d6ac7f70bd5b6c99104a28",
+    "entrypoint.sh": "9e57774e2481ed3da1f89d134a8fdac76ee24c61347336e3bc5cde0de0acb5f0"
+  },
+  "worker_crash_auto_restart_and_real_inference_pass": true,
+  "build_method": "aarch64 cross build with verified pinned ncnn cache; public docker/runtime.Dockerfile",
+  "model_weights_release": "v0.2.0",
+  "archive_sha256": "932c1675e5863d8d981f2ce98f1e50ef8bcf6548a34bc81384022c9f95635331"
+}
