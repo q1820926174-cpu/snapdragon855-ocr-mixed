@@ -15,7 +15,7 @@ mkdir -p downloads/models downloads/api
 gh release download v0.2.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
   -p sm8150-pnnx-gpu-v0.2.0.tar.gz -p SHA256SUMS -D downloads/models
 (cd downloads/models && sha256sum -c SHA256SUMS)
-tar -xzf downloads/models/sm8150-pnnx-gpu-v0.2.0.tar.gz
+tar -xzf downloads/models/sm8150-pnnx-gpu-v0.2.0.tar.gz models/gpu-native
 gh release download v0.3.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
   -p snapdragon855-ocr-api-v0.3.0-linux-arm64.tar.gz -p SHA256SUMS -D downloads/api
 (cd downloads/api && sha256sum -c SHA256SUMS)
@@ -103,5 +103,7 @@ docker build -f docker/runtime.Dockerfile -t snapdragon855-ocr-api:0.3.0 .
 <!-- /api-measurement -->
 
 [API 基准数据](../benchmarks/api-v0.3.json)来自真实 USB 连接上的 HTTP 请求，包含图片解码和预处理。310 张文字和输出哈希均与 v0.2 一致，其中正确 257 张。这是有工程使用经历的回归集，不是未见过的最终准确率测试。CLI 与 API 分别测量，较小的吞吐差异属于波动，不宣称 API 反而加速了模型。
+
+本版未重新测量 API 功耗，先前 v0.2 CLI 的能耗不能当成本 HTTP 服务的测量值。上方解压命令只提取模型目录，保留仓库内较新的许可说明。
 
 详见[许可说明](licensing.zh-CN.md)及镜像中的 `/app/licenses`。GPU 程序、ncnn、glslang 均为开源组件；Debian／Python 包保留各自许可。模型使用未改变的 v0.2 开放模型包，单独挂载。镜像不包含高通 SDK／运行库／固件或已编译 HTA 缓存。API 按 FastAPI 的 [lifespan 方式](https://fastapi.tiangolo.com/advanced/events/)常驻模型；设备和只读挂载采用[标准 Docker 配置](https://docs.docker.com/engine/containers/run/)。

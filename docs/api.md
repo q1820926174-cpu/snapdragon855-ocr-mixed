@@ -15,7 +15,7 @@ mkdir -p downloads/models downloads/api
 gh release download v0.2.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
   -p sm8150-pnnx-gpu-v0.2.0.tar.gz -p SHA256SUMS -D downloads/models
 (cd downloads/models && sha256sum -c SHA256SUMS)
-tar -xzf downloads/models/sm8150-pnnx-gpu-v0.2.0.tar.gz
+tar -xzf downloads/models/sm8150-pnnx-gpu-v0.2.0.tar.gz models/gpu-native
 gh release download v0.3.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
   -p snapdragon855-ocr-api-v0.3.0-linux-arm64.tar.gz -p SHA256SUMS -D downloads/api
 (cd downloads/api && sha256sum -c SHA256SUMS)
@@ -103,5 +103,7 @@ Measured: **6.250 crops/s**, 10 concurrent clients, client p50 **1599 ms**, p95 
 <!-- /api-measurement -->
 
 [API benchmark data](../benchmarks/api-v0.3.json) records real HTTP requests over the physical USB link, with image decode/preprocessing included. The 310-crop recognition outputs and hashes match v0.2, including 257 correct lines. The corpus has engineering exposure and is not an unseen accuracy test. Native CLI and API measurements were separate runs; small throughput differences are noise, not an API speed-up claim.
+
+API power was not remeasured. The earlier v0.2 CLI energy figures are not measurements of this HTTP service. Model extraction above selects only the model directory, preserving the repository's newer license notices.
 
 See [licensing](licensing.md) and `/app/licenses` in the image. The GPU worker, ncnn and glslang are open source; Debian/Python packages retain their licenses. Models are mounted separately from the unchanged v0.2 open asset. Qualcomm SDK/runtime/firmware and compiled HTA caches are not bundled. API implementation follows FastAPI's [lifespan model](https://fastapi.tiangolo.com/advanced/events/); device and read-only mounts use standard [Docker options](https://docs.docker.com/engine/containers/run/).
