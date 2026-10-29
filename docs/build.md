@@ -1,5 +1,18 @@
 # Build and reproduce
 
+[Home](../README.md) · **English** | [简体中文](build.zh-CN.md)
+
+Prepare the HTA containers on an x86-64 host, then build the executors for the aarch64 phone. The phone's underlying drivers and runtime must already work.
+
+## Before you start
+
+| Where | Required tools |
+|---|---|
+| x86-64 Linux / WSL host | Your authorized SNPE **1.59.0.3230** SDK and its compatible Python 3.6 environment |
+| Preprocessing and full asset checks | Python 3.11 with `requirements.txt` |
+| aarch64 build environment | GCC 12, CMake, Ninja, the pinned ncnn version and an aarch64 SNPE library |
+| Phone | Native Debian 12 with working NPU, ION, CDSP/FastRPC and KGSL Mesa |
+
 ## 1. Model preparation on an x86-64 Linux host
 
 Use an authorized **SNPE 1.59.0.3230** SDK and the SDK's compatible Python 3.6 environment. The public repository does not install or mirror that SDK. Host preprocessing and full asset verification use Python 3.11 with `requirements.txt`; the old SDK environment separately needs its own supported ONNX/numpy/converter dependencies. The build wrapper itself only needs a modern standard-library Python environment.
@@ -13,7 +26,13 @@ python scripts/build_dlc.py \
   --assets "$PWD/models" --work /tmp/sm8150-dlc-build
 ```
 
-The script preserves the exported W8 weight grid and fixed input/output encodings with `--quantization_overrides` **and `--override_params`**. A zero placeholder input only satisfies the SDK input-list interface; it does not recalibrate the frozen quantization parameters. Every layer is audited after conversion: input/output/weight scales, offsets and bitwidth must match, actual dequantized weights must match within 0.01 weight LSB, and the compiled target must be HTA without a Permute. Only then is the local DLC copied into `models/npu/n_*/`.
+The script preserves the exported W8 weight grid and fixed input/output encodings with `--quantization_overrides` **and `--override_params`**. A zero placeholder input only satisfies the SDK input-list interface; it does not recalibrate the frozen quantization parameters.
+
+Every layer is audited after conversion. Before its DLC is copied into `models/npu/n_*/`:
+
+- Input/output/weight scales, offsets and bitwidth must match the exported values.
+- Actual dequantized weights must match within 0.01 weight LSB.
+- The compiled target must be HTA without a Permute.
 
 The DLC uses `--enable_hta --hta_partitions sm8150:0-1 --bias_bitwidth 32`. A modern HTP SDK/cache is not a drop-in replacement for this 2019-generation HTA runtime. Native W8A16 compiled with this SDK was rejected by the installed phone runtime and is not used.
 
@@ -58,4 +77,14 @@ The runner expects the existing SCV41 platform layout:
 
 These are **platform prerequisites, not files supplied by the open release**. The code does not unlock, flash, install proprietary firmware, change kernel timeouts, clocks, charging or thermal policy. Porting another device requires separate validation. See `run.sh` and `runtime/npu-manager.py` for the exact paths and runtime ownership boundary.
 
-Run `python -m unittest discover -s tests -v`, `bash -n run.sh`, and `python scripts/verify_models.py models` on the host. Physical tests need the real device and qualified platform; CI does not emulate or claim HTA hardware validation.
+## 4. Check the build
+
+Run on the host:
+
+```bash
+python -m unittest discover -s tests -v
+bash -n run.sh
+python scripts/verify_models.py models
+```
+
+Physical tests need the real device and qualified platform. CI checks source and input contracts; it does not emulate HTA hardware.

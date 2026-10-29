@@ -1,5 +1,7 @@
 # Model card
 
+[Home](../README.md) · **English** | [简体中文](model-card.zh-CN.md)
+
 - Upstream: [PaddlePaddle PP-OCRv6_medium_rec](https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_rec_onnx), Apache-2.0.
 - Target: native Debian 12 on Samsung SCV41, Snapdragon 855/SM8150 HTA and Adreno 640.
 - Task: recognition of already cropped text, not detection or full-page OCR.
