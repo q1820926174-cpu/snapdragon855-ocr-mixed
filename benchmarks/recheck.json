@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-29",
+  "scope": "Full runtime replay from original packaged models; no new power claim",
+  "profiles": {
+    "quality": {
+      "images": 310,
+      "correct": 255,
+      "new_errors": 0,
+      "text_differences_from_original": 0,
+      "npu_executions": 7440,
+      "npu_contexts": 12,
+      "peak_inflight": 10,
+      "cpu_fallback": false,
+      "normal_boot_restored": true
+    },
+    "fast": {
+      "images": 310,
+      "correct": 252,
+      "new_errors": 5,
+      "text_differences_from_original": 0,
+      "npu_executions": 4960,
+      "npu_contexts": 16,
+      "peak_inflight": 10,
+      "cpu_fallback": false,
+      "normal_boot_restored": true
+    }
+  },
+  "proprietary_runtime_not_redistributed": true,
+  "rebuilt_from_public_source_and_open_weights": {
+    "quality": {
+      "images": 310,
+      "correct": 255,
+      "new_errors": 0,
+      "text_differences_from_original": 0,
+      "npu_executions": 7440,
+      "npu_contexts": 12,
+      "peak_inflight": 10,
+      "cpu_fallback": false,
+      "normal_boot_restored": true
+    },
+    "fast": {
+      "images": 310,
+      "correct": 252,
+      "new_errors": 5,
+      "text_differences_from_original": 0,
+      "npu_executions": 4960,
+      "npu_contexts": 16,
+      "peak_inflight": 10,
+      "cpu_fallback": false,
+      "normal_boot_restored": true
+    }
+  },
+  "local_dlc_roundtrip_layers": 16,
+  "local_dlc_weights_and_encodings_match": true,
+  "build_source": "Repository CMake targets, verified existing ncnn cache at pinned commit with included patch; new local SNPE HTA containers from public frozen weight grid"
+}

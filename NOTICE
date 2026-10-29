@@ -1,0 +1,17 @@
+Copyright 2026 q1820926174-cpu
+
+Original integration code: Apache-2.0, see LICENSE.
+Derived PP-OCRv6_medium_rec weights, dictionary and graph assets:
+Copyright PaddlePaddle Authors; Apache-2.0, see licenses/PaddleOCR-Apache-2.0.txt.
+Source: https://github.com/PaddlePaddle/PaddleOCR
+Model license declaration: https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_rec_onnx
+Changes: fixed-shape export, graph partitioning, balanced bias-free W8 grid,
+GPU sparse outlier and affine restoration, GPU classifier graph conversion.
+
+The ncnn patch contains modified Tencent ncnn source context, BSD-3-Clause.
+See licenses/ncnn-BSD-3-Clause.txt. Build dependencies retain their own licenses.
+
+Qualcomm SNPE, SDK headers, compiler, runtime libraries, firmware and precompiled
+HTA cache are NOT included or relicensed. Obtain your own authorized SDK/runtime.
+No endorsement by Qualcomm, Samsung, Tencent or PaddlePaddle is implied.
+Calibration/test images and per-image transcriptions are NOT redistributed.

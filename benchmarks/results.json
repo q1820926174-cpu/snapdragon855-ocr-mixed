@@ -1,0 +1,62 @@
+{
+  "scope": "Fixed 310 development regression text crops, not independent holdout or full-page OCR",
+  "power_scope": "System rail estimate including desktop; earlier CPU/GPU runs at different temperatures; approximate comparisons",
+  "results": {
+    "cpu": {
+      "images": 310,
+      "correct": 255,
+      "reference_correct": 255,
+      "new_errors": 0,
+      "duration_s": 107.38140336998913,
+      "throughput_images_s": 2.886905835378927,
+      "mean_system_w": 5.051629672224832,
+      "joules_per_image": 1.7498422048676796,
+      "battery_max_c": 37.6,
+      "peak_inflight": 10,
+      "binary_sha256": "e36d7b625cdc54d12cb0fb6e573bac93f9fae1953cbd45fe4adfa65cc16394f9",
+      "tag": "cpu-final310-w10"
+    },
+    "gpu": {
+      "images": 310,
+      "correct": 256,
+      "reference_correct": 255,
+      "new_errors": 0,
+      "duration_s": 67.63166858998011,
+      "throughput_images_s": 4.583651512125012,
+      "mean_system_w": 4.5439164261951195,
+      "joules_per_image": 0.991331128506436,
+      "battery_max_c": 39.5,
+      "peak_inflight": 10,
+      "binary_sha256": "35c109647eab7210f1a6d1254d27fb1eb8d4da1211af2cc286364a4d76e4652a",
+      "tag": "gpu-fused-fp32-w2-310"
+    },
+    "quality": {
+      "images": 310,
+      "correct": 255,
+      "reference_correct": 255,
+      "new_errors": 0,
+      "duration_s": 127.6560622699908,
+      "throughput_images_s": 2.428400144008471,
+      "mean_system_w": 3.930310722348691,
+      "joules_per_image": 1.6184773881050227,
+      "battery_max_c": 39.7,
+      "peak_inflight": 10,
+      "binary_sha256": "80732b382dcb7c452c846ec4651c9dbb513d3fba797aab722b1c7d032fa59d41",
+      "tag": "855-refined-fp32-early12-w4-310"
+    },
+    "fast": {
+      "images": 310,
+      "correct": 252,
+      "reference_correct": 255,
+      "new_errors": 5,
+      "duration_s": 58.436962250008946,
+      "throughput_images_s": 5.3048616502982675,
+      "mean_system_w": 3.907025461964029,
+      "joules_per_image": 0.736499030421341,
+      "battery_max_c": 37.2,
+      "peak_inflight": 10,
+      "binary_sha256": "c8d3175bb82711a9bdd2acac8e8d84476bf7b13a278402e95b6912de93b4de1d",
+      "tag": "855-packed-sparse-all-w4-310"
+    }
+  }
+}

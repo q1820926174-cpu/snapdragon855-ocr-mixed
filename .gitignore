@@ -1,0 +1,11 @@
+models/
+build/
+_deps/
+.venv/
+__pycache__/
+*.pyc
+*.dlc
+*.so
+*.a
+*.dll
+*.pem
