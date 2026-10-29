@@ -1,0 +1,917 @@
+{
+  "scope": "Diagnostic GPU timestamps; CPU feature/logit readbacks enabled only in profile executable, not release; do not sum into release throughput",
+  "layers": [
+    {
+      "type": "Gemm",
+      "name": "gemm_4",
+      "median_ms": 9.61849,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_44",
+      "median_ms": 6.17953,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_42",
+      "median_ms": 6.1636999999999995,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_43",
+      "median_ms": 6.0953599999999994,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_41",
+      "median_ms": 6.0786999999999995,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_3",
+      "median_ms": 5.68115,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_28",
+      "median_ms": 5.28479,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_34",
+      "median_ms": 5.27906,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_21",
+      "median_ms": 5.1938,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_29",
+      "median_ms": 5.184270000000001,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_30",
+      "median_ms": 5.1675,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_36",
+      "median_ms": 5.16536,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_23",
+      "median_ms": 5.163069999999999,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_24",
+      "median_ms": 5.15927,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_22",
+      "median_ms": 5.15849,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_27",
+      "median_ms": 5.1544799999999995,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_33",
+      "median_ms": 5.1544799999999995,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_35",
+      "median_ms": 5.135260000000001,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_38",
+      "median_ms": 4.11922,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_84",
+      "median_ms": 2.92339,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_82",
+      "median_ms": 2.7576,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_81",
+      "median_ms": 2.75448,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_37",
+      "median_ms": 2.75057,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_83",
+      "median_ms": 2.73771,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_16",
+      "median_ms": 2.65578,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_12",
+      "median_ms": 2.6534899999999997,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_18",
+      "median_ms": 2.64005,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_15",
+      "median_ms": 2.57479,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_11",
+      "median_ms": 2.57339,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_80",
+      "median_ms": 2.31828,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_10",
+      "median_ms": 1.33703,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_17",
+      "median_ms": 1.32443,
+      "samples": 3
+    },
+    {
+      "type": "Reduction",
+      "name": "mean_79",
+      "median_ms": 1.1838499999999998,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_1",
+      "median_ms": 0.8856799999999999,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_2",
+      "median_ms": 0.84948,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_0",
+      "median_ms": 0.8323400000000001,
+      "samples": 3
+    },
+    {
+      "type": "MultiHeadAttention",
+      "name": "attention_12",
+      "median_ms": 0.75781,
+      "samples": 3
+    },
+    {
+      "type": "MultiHeadAttention",
+      "name": "attention_13",
+      "median_ms": 0.75391,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_8",
+      "median_ms": 0.70188,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_9",
+      "median_ms": 0.6788500000000001,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_7",
+      "median_ms": 0.6657799999999999,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_5",
+      "median_ms": 0.6151,
+      "samples": 3
+    },
+    {
+      "type": "Gemm",
+      "name": "gemm_1",
+      "median_ms": 0.46792,
+      "samples": 3
+    },
+    {
+      "type": "Gemm",
+      "name": "gemm_3",
+      "median_ms": 0.46068000000000003,
+      "samples": 3
+    },
+    {
+      "type": "Gemm",
+      "name": "gemm_0",
+      "median_ms": 0.45609,
+      "samples": 3
+    },
+    {
+      "type": "Gemm",
+      "name": "gemm_2",
+      "median_ms": 0.45302,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_97",
+      "median_ms": 0.38656,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_98",
+      "median_ms": 0.38198000000000004,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_88",
+      "median_ms": 0.32203,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_6",
+      "median_ms": 0.31984,
+      "samples": 6
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_87",
+      "median_ms": 0.31672,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_93",
+      "median_ms": 0.31016000000000005,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_91",
+      "median_ms": 0.31010000000000004,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_95",
+      "median_ms": 0.3088,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_92",
+      "median_ms": 0.30833,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_90",
+      "median_ms": 0.30807,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_94",
+      "median_ms": 0.30734,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_96",
+      "median_ms": 0.29094,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_10",
+      "median_ms": 0.27125,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_89",
+      "median_ms": 0.20667,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_52",
+      "median_ms": 0.20115,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_54",
+      "median_ms": 0.19995,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_55",
+      "median_ms": 0.19938,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_51",
+      "median_ms": 0.19891,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_49",
+      "median_ms": 0.19885,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_53",
+      "median_ms": 0.19844,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_56",
+      "median_ms": 0.19807,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_48",
+      "median_ms": 0.1976,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_4",
+      "median_ms": 0.18578,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_9",
+      "median_ms": 0.17271,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_7",
+      "median_ms": 0.1699,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_8",
+      "median_ms": 0.16891,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_85",
+      "median_ms": 0.16682,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_86",
+      "median_ms": 0.16271000000000002,
+      "samples": 3
+    },
+    {
+      "type": "Concat",
+      "name": "cat_0",
+      "median_ms": 0.15818000000000002,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_58",
+      "median_ms": 0.15259999999999999,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_59",
+      "median_ms": 0.14984,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_6",
+      "median_ms": 0.11792,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_9",
+      "median_ms": 0.11755,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_12",
+      "median_ms": 0.11698,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_10",
+      "median_ms": 0.11270999999999999,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_13",
+      "median_ms": 0.11167,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_40",
+      "median_ms": 0.10646,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_50",
+      "median_ms": 0.1024,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_46",
+      "median_ms": 0.10125,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_47",
+      "median_ms": 0.10109,
+      "samples": 3
+    },
+    {
+      "type": "GELU",
+      "name": "gelu_57",
+      "median_ms": 0.09859,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_6",
+      "median_ms": 0.09531,
+      "samples": 3
+    },
+    {
+      "type": "Padding",
+      "name": "pad_67",
+      "median_ms": 0.08641,
+      "samples": 3
+    },
+    {
+      "type": "Pooling",
+      "name": "maxpool2d_66",
+      "median_ms": 0.08427,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_15",
+      "median_ms": 0.08427,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_16",
+      "median_ms": 0.08333,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_11",
+      "median_ms": 0.08181999999999999,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_5",
+      "median_ms": 0.08172,
+      "samples": 3
+    },
+    {
+      "type": "LayerNorm",
+      "name": "ln_8",
+      "median_ms": 0.08125,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_8",
+      "median_ms": 0.08120000000000001,
+      "samples": 3
+    },
+    {
+      "type": "LayerNorm",
+      "name": "ln_7",
+      "median_ms": 0.07922,
+      "samples": 3
+    },
+    {
+      "type": "LayerNorm",
+      "name": "ln_9",
+      "median_ms": 0.07917,
+      "samples": 3
+    },
+    {
+      "type": "LayerNorm",
+      "name": "ln_10",
+      "median_ms": 0.07911,
+      "samples": 3
+    },
+    {
+      "type": "LayerNorm",
+      "name": "ln_11",
+      "median_ms": 0.07526000000000001,
+      "samples": 3
+    },
+    {
+      "type": "Pooling",
+      "name": "avgpool2d_45",
+      "median_ms": 0.07182,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_3",
+      "median_ms": 0.07078,
+      "samples": 3
+    },
+    {
+      "type": "ConvolutionDepthWise",
+      "name": "convdw_25",
+      "median_ms": 0.06781000000000001,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_2",
+      "median_ms": 0.062815,
+      "samples": 6
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_14",
+      "median_ms": 0.06125,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_4",
+      "median_ms": 0.060885,
+      "samples": 6
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_7",
+      "median_ms": 0.060525,
+      "samples": 6
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_26",
+      "median_ms": 0.059840000000000004,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_32",
+      "median_ms": 0.05917,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_20",
+      "median_ms": 0.05849,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "convrelu_5",
+      "median_ms": 0.04974,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_1",
+      "median_ms": 0.030365000000000003,
+      "samples": 6
+    },
+    {
+      "type": "Reshape",
+      "name": "squeeze_24",
+      "median_ms": 0.02625,
+      "samples": 3
+    },
+    {
+      "type": "Reshape",
+      "name": "reshape_22",
+      "median_ms": 0.02604,
+      "samples": 3
+    },
+    {
+      "type": "Convolution",
+      "name": "conv_14",
+      "median_ms": 0.02599,
+      "samples": 3
+    },
+    {
+      "type": "Permute",
+      "name": "permute_21",
+      "median_ms": 0.023960000000000002,
+      "samples": 3
+    },
+    {
+      "type": "Permute",
+      "name": "permute_19",
+      "median_ms": 0.022969999999999997,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_0",
+      "median_ms": 0.02273,
+      "samples": 6
+    },
+    {
+      "type": "Reshape",
+      "name": "reshape_23",
+      "median_ms": 0.02115,
+      "samples": 3
+    },
+    {
+      "type": "Swish",
+      "name": "silu_18",
+      "median_ms": 0.02016,
+      "samples": 3
+    },
+    {
+      "type": "Swish",
+      "name": "silu_17",
+      "median_ms": 0.019579999999999997,
+      "samples": 3
+    },
+    {
+      "type": "Sigmoid",
+      "name": "sigmoid_15",
+      "median_ms": 0.01208,
+      "samples": 3
+    },
+    {
+      "type": "Sigmoid",
+      "name": "sigmoid_14",
+      "median_ms": 0.011609999999999999,
+      "samples": 3
+    },
+    {
+      "type": "Permute",
+      "name": "permute_20",
+      "median_ms": 0.01078,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_5",
+      "median_ms": 0.01052,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "add_3",
+      "median_ms": 0.00948,
+      "samples": 3
+    },
+    {
+      "type": "BinaryOp",
+      "name": "mul_6",
+      "median_ms": 0.0077599999999999995,
+      "samples": 3
+    },
+    {
+      "type": "Swish",
+      "name": "silu_16",
+      "median_ms": 0.007549999999999999,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_63",
+      "median_ms": 0.00557,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_60",
+      "median_ms": 0.00505,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_62",
+      "median_ms": 0.00495,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_61",
+      "median_ms": 0.004900000000000001,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_64",
+      "median_ms": 0.004900000000000001,
+      "samples": 3
+    },
+    {
+      "type": "HardSigmoid",
+      "name": "hsigmoid_65",
+      "median_ms": 0.004690000000000001,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_13",
+      "median_ms": 0.00057,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_3",
+      "median_ms": 0.000495,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_2",
+      "median_ms": 0.00047,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_6",
+      "median_ms": 0.00047,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_8",
+      "median_ms": 0.00047,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_10",
+      "median_ms": 0.00047,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_12",
+      "median_ms": 0.00047,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_4",
+      "median_ms": 0.000445,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_5",
+      "median_ms": 0.000445,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_1",
+      "median_ms": 0.00041999999999999996,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_7",
+      "median_ms": 0.00041999999999999996,
+      "samples": 6
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_9",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_11",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_14",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_15",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_16",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_17",
+      "median_ms": 0.00041999999999999996,
+      "samples": 3
+    },
+    {
+      "type": "Split",
+      "name": "splitncnn_0",
+      "median_ms": 0.00038999999999999994,
+      "samples": 6
+    }
+  ]
+}

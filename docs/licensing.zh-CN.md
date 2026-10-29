@@ -4,6 +4,8 @@
 
 ## 公开了哪些内容
 
+独立的 **v0.2 PNNX GPU 模型包**不依赖高通 SDK／运行库。包内原始开放 ONNX 与衍生 ncnn 图保留 PaddleOCR 模型的 Apache-2.0 署名。PNNX 实现位于 Tencent/ncnn/tools/pnnx，遵循 ncnn 许可；转换器二进制及其依赖不随包分发。原有 v0.1 发布文件保持不变。
+
 | 内容 | 许可或处理方式 |
 |---|---|
 | 自有集成源码、构建与验证脚本 | Apache-2.0 |

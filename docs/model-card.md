@@ -10,6 +10,8 @@
 
 ## Mixed precision
 
+The **v0.2 native GPU path** is a separate export from the original ONNX, using PNNX 20261020. It uses FP16 CNN storage/arithmetic with an FP32 sequence/classifier tail, no INT8 model, no NPU contexts and no SNPE dependency. Its assets and hashes are under `models/gpu-native/`; see the [GPU guide](gpu-native.md). The original mixed profiles below remain available.
+
 Large 1×1 convolutions are centered and channel-balanced. The NPU convolutions are bias-free W8A8. GPU FP32 restores inverse output scales, original-domain bias, and clipped weight outliers using CSR sparse dot products. Nonlinearities, normalization, attention and classifier remain on GPU.
 
 `quality` routes the first 12 selected convolutions to the NPU and keeps all remaining GPU storage/arithmetic FP32. It executes a second W8A8 pass on the scaled input quantization residual and combines results on GPU. The model uses the same NPU weight grid twice; it is not W8A16 hardware support. `fast` uses all 16 selected convolutions with one pass and fuses TF8/NHWC conversion with GPU FP16 pack4 storage.
@@ -21,6 +23,8 @@ The shipped PTQ model used 20 independent calibration crops (10 English, 10 Chin
 The frozen W8 grid in each public `model.onnx` is stored as dequantized FP32 constants for the legacy converter. Fixed encodings accompany it. Local SDK conversion is required for physical INT8 inference; opening those ONNX files in a generic runtime does not engage the NPU.
 
 ## Evaluation limits
+
+For native GPU, the 310-crop regression improved from 256 to 257 correct while retaining all old-GPU and CPU-correct lines. A supplementary 100-crop calibration corpus retained all 87 old-GPU-correct lines. Character edit counts were 835/2447 (old GPU 836/2447) and 30/651 (old GPU 29/651), respectively. Thus the line-retention gate passed, but **not every accuracy metric improved**. The supplementary corpus also has prior calibration exposure. The FP32 source conversion check and FP16 device regression check are distinct; neither establishes bitwise or universal losslessness.
 
 The 310 images were a **fixed development regression set used during engineering choices**. They are not an unseen final test set. Quality retained all CPU-correct samples on this set; it is not a guarantee of lossless quantization on arbitrary data. Fast had five new errors even though its total correct count fell by three: it gained other cases while losing five previously correct ones.
 

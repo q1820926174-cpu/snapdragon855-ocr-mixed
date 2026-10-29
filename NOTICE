@@ -7,9 +7,13 @@ Source: https://github.com/PaddlePaddle/PaddleOCR
 Model license declaration: https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_rec_onnx
 Changes: fixed-shape export, graph partitioning, balanced bias-free W8 grid,
 GPU sparse outlier and affine restoration, GPU classifier graph conversion.
+The v0.2 GPU graphs are re-exported directly from the original Paddle ONNX
+using PNNX 20261020, with native operators and an exact static layout repair.
 
 The ncnn patch contains modified Tencent ncnn source context, BSD-3-Clause.
 See licenses/ncnn-BSD-3-Clause.txt. Build dependencies retain their own licenses.
+PNNX is implemented in Tencent/ncnn/tools/pnnx under the ncnn license.
+The converter binary and its third-party dependencies are not redistributed.
 
 Qualcomm SNPE, SDK headers, compiler, runtime libraries, firmware and precompiled
 HTA cache are NOT included or relicensed. Obtain your own authorized SDK/runtime.

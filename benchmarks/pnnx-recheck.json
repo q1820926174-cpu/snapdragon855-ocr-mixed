@@ -1,0 +1,12 @@
+{
+  "images": 310,
+  "same_text": 310,
+  "same_output_hash": 310,
+  "correct": 257,
+  "public_source_build": "BUILD_MIXED=OFF; GCC12 aarch64 Debian sysroot; pinned ncnn",
+  "binary_sha256": "fb7eb64bad1a1dcfc2cdf41ecdd6b1df2cec2ebe890e8bcb5fb0673b6f3242d0",
+  "public_run_script_tested": true,
+  "exported_graphs_byte_identical_to_tested": true,
+  "snpe_dynamic_dependency": false,
+  "nonroot_gpu_cli_one_crop_pass": true
+}

@@ -4,6 +4,8 @@
 
 构建分为两个阶段：先在 x86-64 电脑上生成 NPU 模型，再为 aarch64 手机构建执行器。运行前，手机需要已经具备可用的底层驱动与运行环境。
 
+**新的纯 GPU 路径请先阅读 [PNNX GPU 指南](gpu-native.zh-CN.md)。** 本页记录旧混合 NPU/GPU 配置。只构建 GPU 程序不需要 SNPE。
+
 ## 先检查准备条件
 
 | 在哪里 | 需要什么 |
@@ -58,6 +60,7 @@ cmake --build _deps/ncnn-build -j4
 cmake --install _deps/ncnn-build
 
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_MIXED=ON \
   -Dncnn_DIR="$PWD/_deps/ncnn-install/lib/cmake/ncnn" \
   -DSNPE_ROOT=/path/to/authorized-sdk \
   -DSNPE_LIBRARY=/path/to/aarch64/libSNPE.so

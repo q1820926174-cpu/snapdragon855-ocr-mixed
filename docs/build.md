@@ -4,6 +4,8 @@
 
 Prepare the HTA containers on an x86-64 host, then build the executors for the aarch64 phone. The phone's underlying drivers and runtime must already work.
 
+**For the new GPU-only path, start with the [PNNX GPU guide](gpu-native.md).** This page documents the older mixed NPU/GPU profiles. Building only the GPU runner does not need SNPE.
+
 ## Before you start
 
 | Where | Required tools |
@@ -56,6 +58,7 @@ cmake --build _deps/ncnn-build -j4
 cmake --install _deps/ncnn-build
 
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_MIXED=ON \
   -Dncnn_DIR="$PWD/_deps/ncnn-install/lib/cmake/ncnn" \
   -DSNPE_ROOT=/path/to/authorized-sdk \
   -DSNPE_LIBRARY=/path/to/aarch64/libSNPE.so

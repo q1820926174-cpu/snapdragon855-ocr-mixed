@@ -5,6 +5,7 @@ from PIL import Image
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from prepare_inputs import preprocess
 from verify_models import verify_csr,verify_manifest
+from export_gpu_pnnx import export
 
 class InputAndAssetContracts(unittest.TestCase):
     def test_bgr_padding_and_byte_count(self):
@@ -20,6 +21,10 @@ class InputAndAssetContracts(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp);(p/'SHA256SUMS.json').write_text(json.dumps({'../outside':'0'*64}))
             with self.assertRaises(ValueError):verify_manifest(p)
+    def test_gpu_export_rejects_unknown_source_before_conversion(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp);source=p/'unverified.onnx';source.write_bytes(b'unverified weights')
+            with self.assertRaisesRegex(ValueError,'original reference source'):export(source,p/'out')
     def test_csr_bounds_before_gpu_execution(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/'sparse';blob=struct.pack('<3I5IIf8f',4,8,1,0,1,1,1,1,2,.1,*([0]*8));p.write_bytes(blob);verify_csr(p,4,8,np.zeros(8,np.float32));bad=bytearray(blob);struct.pack_into('<I',bad,12+5*4,8);p.write_bytes(bad)
@@ -29,4 +34,7 @@ class InputAndAssetContracts(unittest.TestCase):
         run=Path(__file__).resolve().parents[1]/'run.sh'
         for arguments in [['invalid','x','y'],['quality','x','y','311'],['quality','x','y','0'],[]]:
             r=subprocess.run(['bash',str(run),*arguments],capture_output=True);self.assertEqual(r.returncode,2,r.stderr)
+        gpu=run.with_name('run-gpu.sh')
+        for arguments in [[],['x'],['x','y','311'],['x','y','0'],['x','y','-1'],['x','y','1','extra']]:
+            r=subprocess.run(['bash',str(gpu),*arguments],capture_output=True);self.assertEqual(r.returncode,2,r.stderr)
 if __name__=='__main__':unittest.main()

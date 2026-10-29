@@ -1,110 +1,91 @@
-# 骁龙 855 混合精度 OCR
+# 骁龙 855 OCR：原生 GPU 与 NPU/GPU 混合推理
 
 [English](README.md) | **简体中文**
 
-在运行原生 Linux 的三星 Galaxy S10 SCV41 上，让 **HTA/NPU 与 Adreno GPU 协同执行 PP-OCRv6 文字识别**。本项目公开实验使用的集成代码、模型权重和构建方法，方便复现与继续优化。
+在运行原生 Linux 的三星 Galaxy S10 SCV41 上执行 **PP-OCRv6 文字识别**。目前建议使用的实验路径为 **PNNX → ncnn Vulkan → Adreno 640**；此前的 HTA/NPU + GPU 混合配置继续保留，方便对比。
 
-**项目处于实验阶段。目前在这台手机上，日常使用仍推荐已有纯 GPU 方案。** 混合配置用于研究精度、吞吐和能耗之间的取舍。
+**v0.2：**原生 GPU 版保留了旧版原本正确的全部回归整行，在下述受控测试中，比旧纯 GPU 版吞吐提高 **36.0%**、整机每张能耗降低 **28.3%**。不需要高通 SDK 或 NPU 运行库。
 
-[下载模型](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.1.0) · [构建指南](docs/build.zh-CN.md) · [详细测试](docs/benchmarks.zh-CN.md) · [模型说明](docs/model-card.zh-CN.md)
+[下载 v0.2 模型](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.2.0) · [GPU 构建／导出指南](docs/gpu-native.zh-CN.md) · [测试详情](docs/pnnx-benchmarks.zh-CN.md)
 
-## 实测表现
+## 实测结果
 
-以下结果来自 **310 张已经裁剪好的文字图片**，输入固定为 48×640，统计区间不含模型初始化。
+每种配置运行 **两轮完整的 310 张裁剪图，取中位数**；每次等电池温度在间隔 5 秒的三次检查中均不超过 35.5°C 后开始。第二轮反向排列，使用设备公共互斥锁排除其他受管理的加速测试。数据不含模型初始化。
 
-| 配置 | 正确数 / 310 | 吞吐：条/秒 ↑ | 每条能量：焦耳 ↓ |
-|---|---:|---:|---:|
-| CPU 基准 | 255 | 2.887 | 1.750 |
-| **已有纯 GPU** | **256** | **4.584** | **0.991** |
-| 混合 `quality` | 255 | 2.428 | 1.618 |
-| 混合 `fast` | 252 | 5.305 | 0.736 |
+| 配置 | 正确 / 310 | 张/秒 ↑ | 整机瓦数 | 焦耳/张 ↓ |
+|---|---:|---:|---:|---:|
+| 旧纯 GPU | 256 | 4.591 | 4.344 | 0.946 |
+| **PNNX 原生 GPU** | 257 | 6.243 | 4.233 | 0.678 |
+| 混合 `quality` | 255 | 2.463 | 3.697 | 1.502 |
+| 混合 `fast` | 252 | 5.243 | 3.727 | 0.711 |
 
-`quality` 保住了 CPU 原本识别正确的全部样本，但比纯 GPU 更慢、每条耗能更多。`fast` 更快、更省电，同时丢失了 5 个 CPU 原本正确的样本；因为另有 2 个样本识别变好，最终正确数只减少了 3 个。
+原生 GPU 保留了旧 GPU 正确的全部 256 张，以及 CPU 正确的全部 255 张。混合 `quality` 保留 CPU 正确样本，但速度更慢；`fast` 丢失 5 张 CPU 正确样本，不属于同等精度方案。另有 **1 次混合运行库测试未完成**，已单独记录，未计入性能中位数。
 
-能量数据来自**包含桌面后台的整机供电估算**，各批次温度不同。相对 CPU，`quality` 约降低 7.5% 的每条能量，这个小幅差距还需要同温复测；`fast` 约降低 58%，但伴随精度退步。详见[测量方法与限制](docs/benchmarks.zh-CN.md)。
+能耗来自 **ISYS × VSYS 整机供电轨估算**，包含桌面，不是 GPU 单独功耗或电池放电能量。两轮复测只说明这些运行结果，不能代表跨设备的统计确定性。提供[相对时间功耗轨迹和汇总](benchmarks/pnnx-controlled.json)。历史 CPU 数据保留在[早期报告](docs/benchmarks.zh-CN.md)，本轮受控对比未重测 CPU。
 
-这组图片是开发过程中使用的回归集，不能据此保证量化模型在所有新图片上无损。
+原生 GPU 两轮能耗为 0.641–0.716 焦耳/张，与混合 `fast` 的范围重叠；不能凭较小的中位数差距断言其能耗稳定优于这个精度较低的配置。
 
-## 运行条件
+这两组数据有开发使用经历，不是未见过的独立最终测试集。补充 100 张图片保留了旧 GPU 正确的全部 87 张，但字符错误增加 1 个；主集字符编辑错误减少 1 个。**不宣称 FP16 普遍无损。**详见[精度报告](benchmarks/pnnx-precision.json)。
 
-| 项目 | 已验证环境 |
-|---|---|
-| 手机 | 三星 SCV41，骁龙 855 / SM8150，Adreno 640 |
-| 手机系统 | 原生 Debian 12，NPU、ION、FastRPC 和 KGSL Mesa 已适配 |
-| 外部软件 | 使用者自行合法获取的 SNPE 1.59.0.3230 SDK/运行库及匹配的设备固件 |
-| 准备电脑 | x86-64 Linux 或 WSL；预处理和模型检查使用 Python 3.11；SDK 使用兼容的 Python 3.6 环境 |
+## 运行 GPU 版
 
-公开包提供集成源码和开放模型参数。高通 SDK、运行库及固件需要另行获取，HTA 容器需要在本地生成。目前只验证了 SCV41；刷机和系统驱动安装不在本项目范围内。
-
-## 开始使用
-
-### 1. 下载并校验模型
-
-在准备电脑上执行，需要先安装 Git 和 GitHub CLI：
+在装有 Git 和 GitHub CLI 的 x86-64 Linux／WSL 准备主机上运行：
 
 ```bash
 git clone https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed.git
 cd snapdragon855-ocr-mixed
-
-gh release download v0.1.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
-  -p sm8150-open-models-v0.1.0.tar.gz -p SHA256SUMS
+gh release download v0.2.0 -R q1820926174-cpu/snapdragon855-ocr-mixed \
+  -p sm8150-pnnx-gpu-v0.2.0.tar.gz -p SHA256SUMS
 sha256sum -c SHA256SUMS
-tar -xzf sm8150-open-models-v0.1.0.tar.gz
-
+tar -xzf sm8150-pnnx-gpu-v0.2.0.tar.gz
 python3.11 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
-python scripts/verify_models.py models
+python scripts/verify_gpu_models.py models/gpu-native
 ```
 
-模型文件包含分区 ONNX、冻结的 W8 权重网格、量化参数、GPU ncnn 模型、通道缩放与稀疏修正、字典及参考 FP32 模型。各部分的作用见[模型说明](docs/model-card.zh-CN.md)。
+按 [GPU 指南](docs/gpu-native.zh-CN.md)，使用固定版本、带补丁的 ncnn 构建 aarch64 程序。手机须已有可用 Vulkan 驱动及 GPU 访问权限。仅验证了 SCV41／原生 Debian 12 与实测 KGSL Mesa 环境；本仓库不负责驱动安装或刷机。
 
-### 2. 构建 HTA 容器和执行器
-
-按照[构建指南](docs/build.zh-CN.md)完成以下步骤：
-
-1. 在 x86-64 电脑上，用自己的 SDK 生成 SM8150 HTA 容器，并核对权重和量化参数。
-2. 使用指定版本的 ncnn 和补丁，构建 aarch64 执行器。
-3. 检查手机的平台依赖，将准备好的文件传入手机。
-
-### 3. 准备文字裁剪图，在手机上执行
-
-先在电脑上将已经裁剪好的文字图片转换成模型输入：
+在主机上准备已经裁切成文字区域的图片：
 
 ```bash
 python scripts/prepare_inputs.py /path/to/crops /path/to/raw \
   --device-prefix /path/on/phone/raw
 ```
 
-将生成的 raw 文件和 `input.tsv` 复制到手机。随后在**手机上**进入准备好的仓库目录执行：
+将输入、仓库、GPU 模型与 aarch64 构建结果传到手机，**在手机上**运行：
 
 ```bash
-sudo bash run.sh quality /path/on/phone/raw/input.tsv /path/to/result.jsonl 310
+bash run-gpu.sh /path/on/phone/raw/input.tsv /path/to/result.jsonl 310
+```
 
-# 可选：速度更高，但存在已知精度退步。
+这是裁剪文字识别，不是整页 OCR。批量 CLI 每次接受 1–310 张图片，使用两个工作线程、最多 10 张在途。不安装服务，也不改动 RustDesk 或桌面。
+
+## GPU 路径改了什么
+
+旧 GPU 路径复用了为 SNPE 展开的兼容图。新版从原始 ONNX 出发，用 PNNX 20261020 保留原生 GELU、LayerNorm 和注意力算子。CNN 存储和运算使用 FP16，序列／分类尾部保持 FP32。CNN 特征留在 GPU，融合 CTC 每张仅回传 640 字节。模型执行禁止回退 CPU。提升来自图、内核、精度和传输方式的共同变化，不能只归因于 PNNX。
+
+模型包包含原始 ONNX、图哈希和独立导出脚本对应的模型。公开源码重建的图已逐文件核对，公开构建程序及脚本已回放完整 310 张。详见[复现检查](benchmarks/pnnx-recheck.json)。
+
+## 旧混合配置
+
+保留独立的 [v0.1 模型包](https://github.com/q1820926174-cpu/snapdragon855-ocr-mixed/releases/tag/v0.1.0)和[混合构建指南](docs/build.zh-CN.md)。这两个配置需要自行合法获取 SNPE 1.59 SDK／运行库，并具备兼容的 NPU／ION／FastRPC／固件环境。以 `-DBUILD_MIXED=ON` 构建，在本地生成 HTA 容器后，在已验证手机上运行：
+
+```bash
+sudo bash run.sh quality /path/on/phone/raw/input.tsv /path/to/result-quality.jsonl 310
 sudo bash run.sh fast /path/on/phone/raw/input.tsv /path/to/result-fast.jsonl 310
 ```
 
-模型负责裁剪区域内的文字识别；整页检测、方向判断和版面分析需自行接入。每次运行接受 1–310 条输入。运行器持有 NPU 独占锁，超时为 170 秒，退出时恢复此前的 NPU 固件供电状态。
+`quality` 共用 12 个 NPU 上下文，每个选中卷积执行两次 INT8，其余 GPU 使用 FP32；`fast` 使用 16 个上下文，每层一次 INT8，CNN 用 FP16 打包存储和 FP32 运算。两者均使用四个工作线程、最多 10 张在途。两次 INT8 不代表硬件原生 W8A16。原有发布文件未被替换。
 
-## 两种配置如何分工
+## 文档
 
-| 配置 | NPU 负责 | GPU 负责 |
+| Read about / 内容 | English | 简体中文 |
 |---|---|---|
-| `quality` | 12 个大卷积采用 W8A8；每层执行两次，细化输入量化残差 | 其余算子与存储保持 FP32，并修正稀疏权重离群值 |
-| `fast` | 16 个大卷积采用 W8A8；每层执行一次 | CNN 使用 FP16 打包存储、FP32 算术；分类头保持 FP32，并融合数据转换 |
+| Native GPU export/build / 原生 GPU 导出与构建 | [GPU guide](docs/gpu-native.md) | [GPU 指南](docs/gpu-native.zh-CN.md) |
+| Controlled tests / 受控测试 | [PNNX benchmarks](docs/pnnx-benchmarks.md) | [PNNX 测试](docs/pnnx-benchmarks.zh-CN.md) |
+| Mixed build / 混合版构建 | [Build guide](docs/build.md) | [构建指南](docs/build.zh-CN.md) |
+| Original measurements / 早期测量 | [Legacy benchmarks](docs/benchmarks.md) | [早期测试](docs/benchmarks.zh-CN.md) |
+| Model and licenses / 模型与许可 | [Model card](docs/model-card.md) · [Licensing](docs/licensing.md) | [模型说明](docs/model-card.zh-CN.md) · [许可](docs/licensing.zh-CN.md) |
 
-这些卷积分别约占原始卷积乘加运算量的 54.9% 和 75.5%。单进程内的 4 个处理线程共享 12 或 16 个 NPU 上下文，在途请求最多为 10 个，禁止回退到 CPU。**两次 INT8 运算不代表硬件原生支持 W8A16。**
-
-## 文档与验证
-
-| 内容 | 简体中文 | English |
-|---|---|---|
-| 构建与平台依赖 | [构建指南](docs/build.zh-CN.md) | [Build guide](docs/build.md) |
-| 测试结果与能耗解读 | [测试与能耗](docs/benchmarks.zh-CN.md) | [Benchmarks](docs/benchmarks.md) |
-| 模型设计与评估边界 | [模型说明](docs/model-card.zh-CN.md) | [Model card](docs/model-card.md) |
-| 许可与发布内容 | [许可与发布范围](docs/licensing.zh-CN.md) | [Licensing](docs/licensing.md) |
-
-原交付包的两个配置，以及通过公开源码和权重重建的两个配置，都完成了全量 310 图复查，识别文本与原结果一致。详见[复查记录](benchmarks/recheck.json)和[测试数据](benchmarks/results.json)。CI 检查源码及输入约定；硬件验证在真实手机上进行。
-
-自有集成代码与 PaddleOCR 衍生模型采用 Apache-2.0，ncnn 补丁保留 BSD-3-Clause 署名。详见 [NOTICE](NOTICE) 和 [licenses/](licenses/)。高通依赖仍适用其独立许可。
+自有集成源码与 PaddleOCR 衍生模型采用 Apache-2.0，ncnn 补丁保留 BSD-3-Clause 署名。详见 [NOTICE](NOTICE) 与 [licenses/](licenses/)。不分发高通软件与固件、已编译 HTA 缓存、可执行程序、测试图片／文字或私有设备访问文件。

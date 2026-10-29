@@ -1,0 +1,159 @@
+{
+  "regression": {
+    "images": 310,
+    "correct": 257,
+    "new_errors_vs_previous_correct": 0,
+    "character_edits": 835,
+    "reference_characters": 2447,
+    "new_errors_vs_cpu_correct": 0
+  },
+  "regression_old_gpu": {
+    "images": 310,
+    "correct": 256,
+    "new_errors_vs_previous_correct": 0,
+    "character_edits": 836,
+    "reference_characters": 2447
+  },
+  "auxiliary": {
+    "images": 100,
+    "correct": 87,
+    "new_errors_vs_previous_correct": 0,
+    "character_edits": 30,
+    "reference_characters": 651
+  },
+  "auxiliary_old_gpu": {
+    "images": 100,
+    "correct": 87,
+    "new_errors_vs_previous_correct": 0,
+    "character_edits": 29,
+    "reference_characters": 651
+  },
+  "precision_gate": "Retain all old-GPU and CPU correct regression crops and all old-GPU correct auxiliary crops; report CER separately",
+  "auxiliary_scope": "Existing mixed calibration corpus; supplementary check, not unseen independent final test",
+  "source_parity": {
+    "pass_all": true,
+    "count": 20,
+    "samples": [
+      {
+        "id": "c0000",
+        "relative_rms": 3.6258406908018515e-06,
+        "max_absolute_error": 3.4332275390625e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0001",
+        "relative_rms": 3.666837528726319e-06,
+        "max_absolute_error": 3.1113624572753906e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0002",
+        "relative_rms": 3.548425638655317e-06,
+        "max_absolute_error": 3.62396240234375e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0003",
+        "relative_rms": 7.832279152353294e-06,
+        "max_absolute_error": 4.100799560546875e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0004",
+        "relative_rms": 3.7247775708237896e-06,
+        "max_absolute_error": 5.340576171875e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0005",
+        "relative_rms": 2.714537686188123e-06,
+        "max_absolute_error": 3.409385681152344e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0006",
+        "relative_rms": 3.4904605854535475e-06,
+        "max_absolute_error": 3.3736228942871094e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0007",
+        "relative_rms": 3.312214175821282e-06,
+        "max_absolute_error": 5.352497100830078e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0008",
+        "relative_rms": 4.369109774415847e-06,
+        "max_absolute_error": 4.76837158203125e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "c0009",
+        "relative_rms": 2.6983418592863018e-06,
+        "max_absolute_error": 4.76837158203125e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0000",
+        "relative_rms": 2.520328735045041e-06,
+        "max_absolute_error": 4.696846008300781e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0001",
+        "relative_rms": 2.206778844993096e-06,
+        "max_absolute_error": 3.337860107421875e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0002",
+        "relative_rms": 3.153686975565506e-06,
+        "max_absolute_error": 3.814697265625e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0003",
+        "relative_rms": 2.9870111575291958e-06,
+        "max_absolute_error": 4.482269287109375e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0004",
+        "relative_rms": 4.527672899712343e-06,
+        "max_absolute_error": 4.2319297790527344e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0005",
+        "relative_rms": 3.0191995392669924e-06,
+        "max_absolute_error": 3.6716461181640625e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0006",
+        "relative_rms": 2.18370928450895e-06,
+        "max_absolute_error": 3.2901763916015625e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0007",
+        "relative_rms": 2.5924600777216256e-06,
+        "max_absolute_error": 0.000152587890625,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0008",
+        "relative_rms": 1.3440325119518093e-06,
+        "max_absolute_error": 3.0517578125e-05,
+        "all_ctc_frame_argmax_equal": true
+      },
+      {
+        "id": "zh0009",
+        "relative_rms": 3.272767344242311e-06,
+        "max_absolute_error": 4.76837158203125e-05,
+        "all_ctc_frame_argmax_equal": true
+      }
+    ]
+  }
+}

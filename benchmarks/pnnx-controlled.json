@@ -1,0 +1,283 @@
+{
+  "scope": "310 fixed development recognition crops; not full-page or independent holdout",
+  "protocol": {
+    "repetitions": 2,
+    "second_round_reverse_order": true,
+    "cooldown_battery_max_c": 35.5,
+    "stable_cooldown_checks": 3,
+    "cooldown_check_interval_seconds": 5,
+    "exclusive_common_device_lock": true,
+    "screen": "DPMS off",
+    "initialization_and_idle_excluded": true,
+    "power": "2 Hz whole-system ISYS x VSYS rail estimate including desktop; not battery discharge power; no idle subtraction",
+    "vsys_max_age_seconds": 6,
+    "clock_thermal_charging_policy_modified": false,
+    "native_workers": 2,
+    "old_gpu_workers": 2,
+    "mixed_workers": 4,
+    "max_inflight": 10,
+    "batch": 1
+  },
+  "runs": [
+    {
+      "images": 310,
+      "correct": 256,
+      "new_errors": 0,
+      "duration_s": 67.5066923800041,
+      "throughput_images_s": 4.5921372988468905,
+      "mean_system_w": 4.3237964807563,
+      "joules_per_image": 0.9415651578714834,
+      "battery_max_c": 37.1,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "35c109647eab7210f1a6d1254d27fb1eb8d4da1211af2cc286364a4d76e4652a",
+      "profile": "oldgpu",
+      "repetition": 1,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 0,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/oldgpu-r1.csv"
+    },
+    {
+      "images": 310,
+      "correct": 257,
+      "new_errors": 0,
+      "duration_s": 49.672704930009786,
+      "throughput_images_s": 6.240852001854914,
+      "mean_system_w": 3.9979074895112943,
+      "joules_per_image": 0.6406028356902281,
+      "battery_max_c": 36.5,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "64c4fad9cc9fa70e3e27bf14d5b24c8463b758a2898b5c9f1fa5ccf92820726f",
+      "profile": "native",
+      "repetition": 1,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 0,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/native-r1.csv",
+      "lost_old_gpu_correct": 0
+    },
+    {
+      "images": 310,
+      "correct": 255,
+      "new_errors": 0,
+      "duration_s": 128.4511598800018,
+      "throughput_images_s": 2.4133686320123533,
+      "mean_system_w": 3.6986313439063334,
+      "joules_per_image": 1.532559632559027,
+      "battery_max_c": 37.7,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "80732b382dcb7c452c846ec4651c9dbb513d3fba797aab722b1c7d032fa59d41",
+      "profile": "mixedquality",
+      "repetition": 1,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 7440,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/mixedquality-r1.csv"
+    },
+    {
+      "images": 310,
+      "correct": 252,
+      "new_errors": 5,
+      "duration_s": 59.490536109980894,
+      "throughput_images_s": 5.210912865651423,
+      "mean_system_w": 3.823155094874108,
+      "joules_per_image": 0.7336824071795662,
+      "battery_max_c": 36.5,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "c8d3175bb82711a9bdd2acac8e8d84476bf7b13a278402e95b6912de93b4de1d",
+      "profile": "mixedfast",
+      "repetition": 1,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 4960,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/mixedfast-r1.csv"
+    },
+    {
+      "images": 310,
+      "correct": 256,
+      "new_errors": 0,
+      "duration_s": 67.54289559999597,
+      "throughput_images_s": 4.589675897756721,
+      "mean_system_w": 4.3649467578924535,
+      "joules_per_image": 0.9510359457028094,
+      "battery_max_c": 37.0,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "35c109647eab7210f1a6d1254d27fb1eb8d4da1211af2cc286364a4d76e4652a",
+      "profile": "oldgpu",
+      "repetition": 2,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 0,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/oldgpu-r2.csv"
+    },
+    {
+      "images": 310,
+      "correct": 257,
+      "new_errors": 0,
+      "duration_s": 49.63684731000103,
+      "throughput_images_s": 6.2453603885019495,
+      "mean_system_w": 4.46899152917382,
+      "joules_per_image": 0.7155698392364158,
+      "battery_max_c": 36.5,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "64c4fad9cc9fa70e3e27bf14d5b24c8463b758a2898b5c9f1fa5ccf92820726f",
+      "profile": "native",
+      "repetition": 2,
+      "cooldown_ready_c": 35.4,
+      "npu_executions": 0,
+      "power_first_sample_battery_c": 35.4,
+      "power_trace": "pnnx-power/native-r2.csv",
+      "lost_old_gpu_correct": 0
+    },
+    {
+      "images": 310,
+      "correct": 255,
+      "new_errors": 0,
+      "duration_s": 123.38489334000042,
+      "throughput_images_s": 2.512463167964667,
+      "mean_system_w": 3.694806170891331,
+      "joules_per_image": 1.470591178410975,
+      "battery_max_c": 36.3,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "80732b382dcb7c452c846ec4651c9dbb513d3fba797aab722b1c7d032fa59d41",
+      "profile": "mixedquality",
+      "repetition": 2,
+      "cooldown_ready_c": 33.9,
+      "npu_executions": 7440,
+      "power_first_sample_battery_c": 33.9,
+      "power_trace": "pnnx-power/mixedquality-r2.csv"
+    },
+    {
+      "images": 310,
+      "correct": 252,
+      "new_errors": 5,
+      "duration_s": 58.77217313001165,
+      "throughput_images_s": 5.274605029734733,
+      "mean_system_w": 3.6307239257732413,
+      "joules_per_image": 0.6883404359768404,
+      "battery_max_c": 36.5,
+      "peak_inflight": 10,
+      "fallback_images": 0,
+      "binary_sha256": "c8d3175bb82711a9bdd2acac8e8d84476bf7b13a278402e95b6912de93b4de1d",
+      "profile": "mixedfast",
+      "repetition": 2,
+      "cooldown_ready_c": 35.5,
+      "npu_executions": 4960,
+      "power_first_sample_battery_c": 35.5,
+      "power_trace": "pnnx-power/mixedfast-r2.csv"
+    }
+  ],
+  "aggregate": {
+    "oldgpu": {
+      "correct": 256,
+      "new_errors_vs_cpu": 0,
+      "repetitions": 2,
+      "throughput_images_s": {
+        "median": 4.590906598301806,
+        "min": 4.589675897756721,
+        "max": 4.5921372988468905
+      },
+      "mean_system_w": {
+        "median": 4.344371619324377,
+        "min": 4.3237964807563,
+        "max": 4.3649467578924535
+      },
+      "joules_per_image": {
+        "median": 0.9463005517871463,
+        "min": 0.9415651578714834,
+        "max": 0.9510359457028094
+      }
+    },
+    "native": {
+      "correct": 257,
+      "new_errors_vs_cpu": 0,
+      "repetitions": 2,
+      "throughput_images_s": {
+        "median": 6.243106195178432,
+        "min": 6.240852001854914,
+        "max": 6.2453603885019495
+      },
+      "mean_system_w": {
+        "median": 4.233449509342558,
+        "min": 3.9979074895112943,
+        "max": 4.46899152917382
+      },
+      "joules_per_image": {
+        "median": 0.6780863374633219,
+        "min": 0.6406028356902281,
+        "max": 0.7155698392364158
+      }
+    },
+    "mixedquality": {
+      "correct": 255,
+      "new_errors_vs_cpu": 0,
+      "repetitions": 2,
+      "throughput_images_s": {
+        "median": 2.46291589998851,
+        "min": 2.4133686320123533,
+        "max": 2.512463167964667
+      },
+      "mean_system_w": {
+        "median": 3.6967187573988323,
+        "min": 3.694806170891331,
+        "max": 3.6986313439063334
+      },
+      "joules_per_image": {
+        "median": 1.501575405485001,
+        "min": 1.470591178410975,
+        "max": 1.532559632559027
+      }
+    },
+    "mixedfast": {
+      "correct": 252,
+      "new_errors_vs_cpu": 5,
+      "repetitions": 2,
+      "throughput_images_s": {
+        "median": 5.242758947693078,
+        "min": 5.210912865651423,
+        "max": 5.274605029734733
+      },
+      "mean_system_w": {
+        "median": 3.7269395103236747,
+        "min": 3.6307239257732413,
+        "max": 3.823155094874108
+      },
+      "joules_per_image": {
+        "median": 0.7110114215782033,
+        "min": 0.6883404359768404,
+        "max": 0.7336824071795662
+      }
+    }
+  },
+  "native_vs": {
+    "oldgpu": {
+      "native_throughput_change_pct": 35.98852561033983,
+      "native_energy_reduction_pct": 28.34344900436605
+    },
+    "mixedquality": {
+      "native_throughput_change_pct": 153.48434330248776,
+      "native_energy_reduction_pct": 54.84167262021027
+    },
+    "mixedfast": {
+      "native_throughput_change_pct": 19.080550097111114,
+      "native_energy_reduction_pct": 4.630739129590755
+    }
+  },
+  "failed_attempts": [
+    {
+      "profile": "mixedquality",
+      "repetition": 1,
+      "attempt": 1,
+      "exit_code": 70,
+      "completed_crops": 192,
+      "reason": "SNPE TF8 execution error 910 / DSP runtime error -6; incomplete run excluded from performance aggregates"
+    }
+  ]
+}
